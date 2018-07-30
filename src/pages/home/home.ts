@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-home',
@@ -18,6 +18,7 @@ export class HomePage {
   public kabupatens: Array<any> = [];
   public jenises: Array<any> = [];
   private url = "http://localhost:8080/";
+  //private url = "https://webmobile99.000webhostapp.com/yiiweb/ionicuas/web/";
   //private url = "http://192.168.43.65/ionicuas/web/";
 
   constructor(
@@ -33,13 +34,12 @@ export class HomePage {
   ionViewWillEnter() {
     this.load();
     this.loadSelect();
-    console.dir(this.kabupatens);
   }
 
   // load data
   load(): void {
     this.http
-      .get(this.url + 'wisata-api/get-wisata?tipe=' + this.jenis + '&kab=' + this.kabupaten)
+      .get(this.url + 'api/get-wisata?tipe=' + this.jenis + '&kab=' + this.kabupaten)
       .subscribe((data: any) => {
         //console.dir(data);
         this.item = data;
@@ -52,7 +52,7 @@ export class HomePage {
   loadSelect(): void {
     // kabupaten
     this.http
-      .get(this.url + 'wisata-api/kabupaten')
+      .get(this.url + 'api/kabupaten')
       .subscribe((data: any) => {
         //console.dir(data);
         this.kabupatens = data;
@@ -61,7 +61,7 @@ export class HomePage {
       });
     // jenis
     this.http
-      .get(this.url + 'wisata-api/jenis')
+      .get(this.url + 'api/jenis')
       .subscribe((data: any) => {
         //console.dir(data);
         this.jenises = data;

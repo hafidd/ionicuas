@@ -29,6 +29,7 @@ export class DetailPage {
   public images: Array<any> = [];
 
   private url = "http://localhost:8080/";
+  //private url = "https://webmobile99.000webhostapp.com/yiiweb/ionicuas/web/";
   //private url = "http://192.168.43.65/ionicuas/web/";
 
   constructor(
@@ -95,7 +96,7 @@ export class DetailPage {
   // load data
   loadGallery(): void {    
     this.http
-      .get(this.url + 'wisata-api/get-gallery?id=' + this.id)
+      .get(this.url + 'api/get-gallery?id=' + this.id)
       .subscribe((data: any) => {
         console.dir(data);
         this.images = data;
