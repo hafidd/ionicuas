@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{name}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-row>
+    <ion-col col-12 col-md-8 push-md-4 style="padding-right: 0;">
+      <div id="akupeta" style="width:100%;height:450px;">peta</div>
+    </ion-col>
+    <ion-col col-12 col-md-4 pull-md-8 style="max-height: 450px; overflow: auto;">
+      <div class="">
+        <img src="{{url}}gambar/wisata/{{img}}" style="width: 100%;">
+      </div>
+      <div class="lokasi-judul">
+        <h4>{{name}}</h4>
+      </div>
+      <div class="detail">
+        <p>{{ket}}</p>
+        <hr>
+        <p>
+          <b>{{kab}}, DIY</b>
+        </p>
+        <p>Latitude : {{lat}}</p>
+        <p>Longitude : {{long}}</p>
+      </div>
+    </ion-col>
+  </ion-row>
+  <hr>
+  <ion-row>
+    <ion-col col-12>
+      <h3>Gallery</h3>
+      <ion-row *ngIf="images.length">
+        <ion-col col-6 col-md-3 *ngFor="let data of images">
+          <img src="{{url}}gambar/gallery/{{id}}_{{data.gl_id}}.{{data.gl_gambar}}" style="width: 100%;">
+          <b>{{data.gl_nama}}</b>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 *ngIf="!images.length">Data gallery tidak ditemukan</ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-content>

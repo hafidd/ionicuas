@@ -1,14 +1,73 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Wisata Yogyakarta
     </ion-title>
   </ion-navbar>
 </ion-header>
+<ion-content>
+  <img src="assets/imgs/yogyakarta.jpeg" alt="yogya" class="imgr" />
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div>
+    <div>
+      <div text-center>
+        <h6>{{jenis}} di {{kabupaten}}
+          <button ion-button small (click)="hideFilter()">
+            <ion-icon name="{{arrow}}"></ion-icon>
+          </button>
+        </h6>
+      </div>
+      <div *ngIf="hideMe">
+        <ion-row>
+          <ion-col col-12 col-md-4>
+            <ion-item>
+              <ion-label>Kabupaten</ion-label>
+              <ion-select [(ngModel)]="kabupaten">
+                <ion-option value="Semua Kabupaten">Semua Kabupaten</ion-option>
+                <ion-option *ngFor="let kab of kabupatens" value="{{kab.kab_nama}}">{{kab.kab_nama}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-md-4>
+            <ion-item>
+              <ion-label>Kategori</ion-label>
+              <ion-select [(ngModel)]="jenis">
+                <ion-option value="Semua Wisata">Semua Wisata</ion-option>
+                <ion-option *ngFor="let jns of jenises" value="{{jns.jenis_nama}}">{{jns.jenis_nama}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-md-1>
+            <button ion-button full (click)="load()">
+              <ion-icon name="search"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-md-4 col-lg-3 col-xl-3 *ngFor="let itemData of item">
+          <ion-card>
+            <ion-card-header>
+              <b>{{ itemData.wis_nama }}</b>
+            </ion-card-header>
+            <ion-card-content no-padding>
+              <div (click)="goDetail({record: itemData})" class="img-list">
+                <img src="{{url}}gambar/wisata/{{ itemData.wis_id }}.{{ itemData.wis_gambar }}" alt="{{itemData.wis_nama}}" />
+              </div>
+            </ion-card-content>
+            <ion-row class="cardfooter">
+              <ion-col>
+                <b>
+                  <ion-icon name="md-images"></ion-icon> {{itemData.photos}}
+                </b>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
 </ion-content>
